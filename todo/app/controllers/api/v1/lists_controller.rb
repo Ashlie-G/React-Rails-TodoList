@@ -22,6 +22,7 @@ class Api::V1::ListsController < ApplicationController
     else
       render json: @list.errors, status: :unprocessable_entity
     end
+
   end
 
   # PATCH/PUT /lists/1
