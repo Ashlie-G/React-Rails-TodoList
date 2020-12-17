@@ -1,32 +1,33 @@
-import React, {Component} from 'react'
-import TodoForm from './TodoForm'
-import TodoItem from './TodoItem'
+import React, { Component } from "react"
+import TodoForm from "./TodoForm"
+import TodoItem from "./TodoItem"
 
 const api_url = `http://localhost:3001/api/v1/lists`
 
 class TodoList extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
             items: []
         }
         this.updateTodoList = this.updateTodoList.bind(this)
     }
-
     componentDidMount() {
         this.getTasks()
+
     }
 
     getTasks() {
         fetch(api_url)
-        .then(response => response.json())
-        .then(response_items => {
-            this.setState({
-                items: response_items
-            })
-        })
+            .then(response => response.json())
+            .then(response_items => {
+                this.setState({
+                    items: response_items
+                })
+            });
     }
-//grabbing items from state and adds to beginning of the array
+
     updateTodoList(item) {
         let _items = this.state.items
         _items.unshift(item)
@@ -40,15 +41,13 @@ class TodoList extends Component {
         return (
             <div>
                 <TodoForm api_url={api_url} updateTodoList={this.updateTodoList} />
-                <ul id='todo_list'>
+                <ul id="todo_list">
                     {this.state.items.map((item) => (
-                        <TodoItem key={item.id} item={item}/>
+                        <TodoItem key={item.id} item={item} />
                     ))}
-
                 </ul>
             </div>
         )
     }
 }
-
 export default TodoList
