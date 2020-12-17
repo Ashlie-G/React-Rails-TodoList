@@ -18,7 +18,7 @@ class Api::V1::ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
-      render json: @list, status: :created, location: @list
+      render json: @list, status: :created, location: api_v1_lists_path(@list)
     else
       render json: @list.errors, status: :unprocessable_entity
     end
