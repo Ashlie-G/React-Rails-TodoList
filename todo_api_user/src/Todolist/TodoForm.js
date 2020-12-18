@@ -50,7 +50,7 @@ class TodoForm extends Component {
                     <Grid item xs={10}>
                 <TextField 
                 id='task_input'
-                label='Task Description'
+                label='Task Title'
                 variant='outlined'
                 type='text'
                 name='todo[task]'
@@ -65,7 +65,7 @@ class TodoForm extends Component {
                     type='text'
                     style={{width: '83%', borderRadius: '2px'}}
                     rowsMin={3}
-                    placeholder='Describe your ToDo item'
+                    placeholder='Describe your task'
                     name='todo[body]'>
                     </TextareaAutosize> 
                 </Grid>
