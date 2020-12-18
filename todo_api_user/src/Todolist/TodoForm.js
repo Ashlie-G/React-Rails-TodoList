@@ -41,13 +41,13 @@ class TodoForm extends Component {
         return (
             <Grid container>
                 <Grid item xs></Grid>
-                <Grid item xs={12}>
+                <Grid item xs={10}>
                 <form
                     onSubmit={this.handleSubmit}
                     id="todo_form"
                     autoComplete='off'>
                     <Grid container>
-                    <Grid item xs={10}>
+                    <Grid item xs={12}>
                 <TextField 
                 id='task_input'
                 label='Task Title'
@@ -63,13 +63,13 @@ class TodoForm extends Component {
                     label='task body'
                     variant='outlined'
                     type='text'
-                    style={{width: '83%', borderRadius: '2px'}}
+                    style={{width: '99.5%', borderRadius: '2px'}}
                     rowsMin={3}
                     placeholder='Describe your task'
                     name='todo[body]'>
                     </TextareaAutosize> 
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <Button variant='contained'
                         color='primary'
                         type='submit'
