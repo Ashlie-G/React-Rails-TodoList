@@ -7,12 +7,19 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 class TodoForm extends Component {
     constructor(props) {
         super(props)
+        let defaultTaskValue = ''
+        let defaultBodyValue = ''
         this.state = {
             api_url: props.api_url,
-            task: '',
+            task: defaultTaskValue,
+            body: defaultBodyValue,
+            defaultTaskValue: defaultTaskValue,
+            defaultBodyValue: defaultBodyValue
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleTaskChange = this.handleTaskChange.bind(this)
+        this.handleBodyChange = this.handleBodyChange.bind(this)
+
     }
 
     handleSubmit(event) {
@@ -28,12 +35,22 @@ class TodoForm extends Component {
             body: data
         }).then(response => response.json())
         .then(response => this.props.updateTodoList(response))
+        this.setState({
+            task: this.state.defaultBodyValue,
+            body: this.state.defaultBodyValue
+        })
 
     }
 
     handleTaskChange(event) {
         this.setState({
             task: event.target.value
+        })
+    }
+
+    handleBodyChange(event) {
+        this.setState({
+            body: event.target.value
         })
     }
 
@@ -54,6 +71,7 @@ class TodoForm extends Component {
                 variant='outlined'
                 type='text'
                 name='todo[task]'
+                value={this.state.task}
                 onChange={this.handleTaskChange}
                 fullWidth/>
                 </Grid>
@@ -63,6 +81,8 @@ class TodoForm extends Component {
                     label='task body'
                     variant='outlined'
                     type='text'
+                    value={this.state.body}
+                    onChange={this.handleBodyChange}
                     style={{width: '99.5%', borderRadius: '2px'}}
                     rowsMin={3}
                     placeholder='Describe your task'
